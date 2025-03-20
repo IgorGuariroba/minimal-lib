@@ -1,0 +1,6 @@
+# Padrão para todo o repositório
+* @IgorGuariroba
+
+# Arquivos específicos
+package.json @IgorGuariroba
+src/utils/* @IgorGuariroba
