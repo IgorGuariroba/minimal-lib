@@ -1,10 +1,10 @@
 name: Release
-
+      
 on:
   push:
     tags:
       - 'v*'
-
+    
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -13,11 +13,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@IgorGuariroba'
       - run: npm ci
       - run: npm run build
-      
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             dist/*
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
